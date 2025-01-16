@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category Management</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <!-- Include the Navbar -->
+  <%- include('partials/navbar') %>
+
+  <div class="container">
+    <h1>Category Management</h1>
+
+    <form id="addCategoryForm">
+      <input type="text" id="categoryName" placeholder="Category Name" required />
+      <button type="submit">Add Category</button>
+    </form>
+
+    <ul id="categoryList">
+      <% categories.forEach(category => { %>
+        <li data-id="<%= category.CategoryId %>">
+          <span><%= category.CategoryName %></span>
+          <button class="delete-btn">Delete</button>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</body>
+</html>

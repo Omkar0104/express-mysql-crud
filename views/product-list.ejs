@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product List</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <!-- Include Navbar -->
+  <%- include('partials/navbar') %>
+
+  <div class="container">
+    <h1>Product List</h1>
+
+    <!-- Products Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Product ID</th>
+          <th>Product Name</th>
+          <th>Category Name</th>
+          <th>Category ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% products.forEach(product => { %>
+          <tr>
+            <td><%= product.ProductId %></td>
+            <td><%= product.ProductName %></td>
+            <td><%= product.CategoryName %></td>
+            <td><%= product.CategoryId %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <% if (page > 1) { %>
+        <a href="/product/list?page=<%= page - 1 %>">&laquo; Previous</a>
+      <% } else { %>
+        <a class="disabled">&laquo; Previous</a>
+      <% } %>
+
+      <% for (let i = 1; i <= totalPages; i++) { %>
+        <a href="/product/list?page=<%= i %>" class="<%= i === page ? 'active' : '' %>"><%= i %></a>
+      <% } %>
+
+      <% if (page < totalPages) { %>
+        <a href="/product/list?page=<%= page + 1 %>">Next &raquo;</a>
+      <% } else { %>
+        <a class="disabled">Next &raquo;</a>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>
